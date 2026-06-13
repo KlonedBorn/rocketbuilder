@@ -28,12 +28,3 @@ set_target_properties(Rocket PROPERTIES
     OUTPUT_NAME "Rocket"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )
-
-# Ensure the assets folder is available to the executable
-# This copies the assets folder from the source directory to the build directory
-add_custom_command(TARGET Rocket POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${CMAKE_SOURCE_DIR}/assets"
-    "$<TARGET_FILE_DIR:Rocket>/assets"
-    COMMENT "Copying assets to build directory..."
-)
