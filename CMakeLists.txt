@@ -43,10 +43,13 @@ FetchContent_MakeAvailable(imgui-sfml)
 # Executable
 add_executable(Rocket 
     src/main.cpp
-    src/Application/Application.hpp
-    src/Application/Application.cpp
+    src/Core/Application.hpp
+    src/Core/Application.cpp
     src/Graphics/Grid.hpp
-    src/Graphics/Grid.cpp)
+    src/Graphics/Grid.cpp
+    src/Scene/Scene.hpp
+    src/Scene/SceneManager.hpp
+    src/Application/AppData.hpp)
 
 # Link libraries
 # Note: imgui-sfml v3.0 defines ImGui-SFML::ImGui-SFML

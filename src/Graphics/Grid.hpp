@@ -6,7 +6,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-namespace Game
+namespace Game::Graphics
 {
     class Grid : public sf::Drawable
     {

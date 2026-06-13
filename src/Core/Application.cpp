@@ -5,7 +5,7 @@
 #include <iostream>
 #include <format>
 
-namespace Game
+namespace Game::Core
 {
     Application::Application()
     {

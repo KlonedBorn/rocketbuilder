@@ -1,7 +1,7 @@
 #include "Grid.hpp"
 #include <cmath>
 
-namespace Game
+namespace Game::Graphics
 {
     Grid::Grid(float spacing, int interval)
         : spacing(spacing), interval(interval)

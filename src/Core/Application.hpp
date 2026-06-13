@@ -4,7 +4,7 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/System/Clock.hpp>
 
-namespace Game
+namespace Game::Core
 {
     class Application
     {
