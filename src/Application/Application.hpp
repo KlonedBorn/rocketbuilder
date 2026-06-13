@@ -15,7 +15,7 @@ namespace Game
         void Shutdown();
 
     private:
-        void ProcessEvent(const std::optional<sf::Event> &event);
+        void ProcessEvents();
         void Update(const float dt);
         void Render();
 
@@ -23,7 +23,5 @@ namespace Game
         sf::View m_View;
         sf::Clock m_Clock;
         sf::RenderWindow m_Window;
-        const std::string m_WindowTitle{"Rocket Builder"};
-        const sf::Vector2u m_DefaultWindowSize{1024, 768};
     };
 }

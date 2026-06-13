@@ -9,11 +9,12 @@ namespace Game
 {
     Application::Application()
     {
-        m_Window.create(sf::VideoMode(m_DefaultWindowSize), m_WindowTitle);
+        sf::Vector2u defaultWindowSize = {1024, 768};
+        m_Window.create(sf::VideoMode(defaultWindowSize), "Rocket Builder");
         m_Window.setFramerateLimit(60);
         m_Window.setVerticalSyncEnabled(true);
 
-        sf::Vector2f viewSize = static_cast<sf::Vector2f>(m_DefaultWindowSize);
+        sf::Vector2f viewSize = static_cast<sf::Vector2f>(defaultWindowSize);
         m_View.setSize(viewSize);
         m_View.setCenter(viewSize / 2.0f);
         m_Window.setView(m_View);
@@ -30,11 +31,7 @@ namespace Game
         while (m_Window.isOpen())
         {
             sf::Time time = m_Clock.restart();
-            while (const std::optional event = m_Window.pollEvent())
-            {
-                ImGui::SFML::ProcessEvent(m_Window, event);
-                this->ProcessEvent(event);
-            }
+            ProcessEvents();
 
             ImGui::SFML::Update(m_Window, time);
             Update(time.asSeconds());
@@ -51,19 +48,22 @@ namespace Game
         m_Window.close();
     }
 
-    void Application::ProcessEvent(const std::optional<sf::Event> &event)
+    void Application::ProcessEvents()
     {
-        if (event->is<sf::Event::Closed>())
+        while (const std::optional event = m_Window.pollEvent())
         {
-            Shutdown();
-        }
-
-        if (const auto &resized = event->getIf<sf::Event::Resized>())
-        {
-            sf::Vector2f n_size_f = static_cast<sf::Vector2f>(resized->size);
-            m_View.setSize(n_size_f);
-            m_View.setCenter(n_size_f / 2.0f);
-            m_Window.setView(m_View);
+            ImGui::SFML::ProcessEvent(m_Window, event);
+            if (event->is<sf::Event::Closed>())
+            {
+                Shutdown();
+            }
+            if (const auto &resized = event->getIf<sf::Event::Resized>())
+            {
+                sf::Vector2f n_size_f = static_cast<sf::Vector2f>(resized->size);
+                m_View.setSize(n_size_f);
+                m_View.setCenter(n_size_f / 2.0f);
+                m_Window.setView(m_View);
+            }
         }
     }
 
