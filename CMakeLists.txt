@@ -49,7 +49,7 @@ add_executable(Rocket
     src/Graphics/Grid.cpp
     src/Scene/Scene.hpp
     src/Scene/SceneManager.hpp
-    src/Application/AppData.hpp)
+    src/Scene/SceneManager.cpp)
 
 # Link libraries
 # Note: imgui-sfml v3.0 defines ImGui-SFML::ImGui-SFML
