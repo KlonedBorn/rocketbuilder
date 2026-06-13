@@ -8,9 +8,9 @@
 /**
  * @brief Forward declaration of AppContext.
  * 
- * AppContext is defined in Core/Application.hpp. The Scene module never owns or includes that definition.
+ * AppContext is defined in Core/Application.hpp.
  */
-namespace Core { struct AppContext; }
+namespace Game::Core { struct AppContext; }
 
 namespace Game::Scene
 {

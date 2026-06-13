@@ -12,6 +12,14 @@ namespace Game::Core
     {
     };
 
+    /**
+     * @brief Context object passed to scenes, containing references to global systems and state.
+     */
+    struct AppContext
+    {
+        AppState& state;
+    };
+
     class Application
     {
     public:
@@ -22,7 +30,7 @@ namespace Game::Core
 
     private:
         void ProcessEvents();
-        void Update(const float dt);
+        void Update(sf::Time dt);
         void Render();
 
         AppState m_AppState;

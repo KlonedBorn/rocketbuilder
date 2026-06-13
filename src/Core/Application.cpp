@@ -5,6 +5,8 @@
 #include <iostream>
 #include <format>
 
+#include "../Scenes/EditorScene.hpp"
+
 namespace Game::Core
 {
     Application::Application()
@@ -25,7 +27,8 @@ namespace Game::Core
             Shutdown();
         }
 
-        m_SceneManager.registerScene()
+        m_SceneManager.registerScene<Game::Scenes::EditorScene>("editor_scene");
+        m_SceneManager.requestPush("editor_scene");
     }
 
     void Application::Run()
@@ -36,7 +39,7 @@ namespace Game::Core
             ProcessEvents();
 
             ImGui::SFML::Update(m_Window, time);
-            Update(time.asSeconds());
+            Update(time);
 
             m_Window.clear(sf::Color::Black);
             Render();
@@ -52,9 +55,10 @@ namespace Game::Core
 
     void Application::ProcessEvents()
     {
+        AppContext ctx{m_AppState};
         while (const std::optional event = m_Window.pollEvent())
         {
-            ImGui::SFML::ProcessEvent(m_Window, event);
+            ImGui::SFML::ProcessEvent(m_Window, *event);
             if (event->is<sf::Event::Closed>())
             {
                 Shutdown();
@@ -66,14 +70,21 @@ namespace Game::Core
                 m_View.setCenter(n_size_f / 2.0f);
                 m_Window.setView(m_View);
             }
+
+            m_SceneManager.onEvent(ctx, event);
         }
     }
 
-    void Application::Update(const float dt)
+    void Application::Update(sf::Time dt)
     {
+        AppContext ctx{m_AppState};
+        m_SceneManager.onUpdate(ctx, dt);
+        m_SceneManager.flushTransition(ctx);
     }
 
     void Application::Render()
     {
+        AppContext ctx{m_AppState};
+        m_SceneManager.onRender(ctx, m_Window);
     }
 }
