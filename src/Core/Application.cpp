@@ -24,6 +24,8 @@ namespace Game::Core
             std::cerr << "Dear ImGUI failed to initialize" << std::endl;
             Shutdown();
         }
+
+        m_SceneManager.registerScene()
     }
 
     void Application::Run()
