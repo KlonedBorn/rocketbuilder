@@ -4,8 +4,14 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/System/Clock.hpp>
 
+#include "../Scene/SceneManager.hpp"
+
 namespace Game::Core
 {
+    struct AppState
+    {
+    };
+
     class Application
     {
     public:
@@ -19,7 +25,9 @@ namespace Game::Core
         void Update(const float dt);
         void Render();
 
-    private:
+        AppState m_AppState;
+        Scene::SceneManager m_SceneManager;
+
         sf::View m_View;
         sf::Clock m_Clock;
         sf::RenderWindow m_Window;

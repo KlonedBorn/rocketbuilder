@@ -4,5 +4,7 @@
 
 namespace Game::Scene
 {
-
+    class SceneManager
+    {
+    };
 }
