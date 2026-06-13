@@ -1,0 +1,36 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "base",
+      "description": "Base configuration for RocketBuilder. USER NOTE: Ensure compiler and toolchain paths are correct for your system.",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-mingw-static",
+        "VCPKG_HOST_TRIPLET": "x64-mingw-static",
+        "CMAKE_MAKE_PROGRAM": "C:/w64devkit/bin/ninja.exe",
+        "CMAKE_C_COMPILER": "C:/w64devkit/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "C:/w64devkit/bin/g++.exe"
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": "base",
+      "description": "Debug build using W64devkit and Ninja. USER NOTE: Update paths if W64devkit or vcpkg are in different locations.",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "base",
+      "description": "Release build using W64devkit and Ninja. USER NOTE: Update paths if W64devkit or vcpkg are in different locations.",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ]
+}
