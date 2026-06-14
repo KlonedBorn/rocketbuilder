@@ -5,7 +5,7 @@
 #include <iostream>
 #include <format>
 
-#include "../Scenes/EditorScene.hpp"
+#include "../Scenes/CreateScene.hpp"
 
 namespace Game::Core
 {
@@ -27,7 +27,7 @@ namespace Game::Core
             Shutdown();
         }
 
-        m_SceneManager.registerScene<Game::Scenes::EditorScene>("editor_scene");
+        m_SceneManager.registerScene<Game::Scenes::CreateScene>("editor_scene");
         m_SceneManager.requestPush("editor_scene");
     }
 

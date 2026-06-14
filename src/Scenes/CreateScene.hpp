@@ -8,18 +8,18 @@ namespace Game::Scenes
     /**
      * @brief The main editor scene where rocket building takes place.
      */
-    class EditorScene : public Scene::Scene
+    class CreateScene : public Scene::Scene
     {
     public:
         /**
-         * @brief Constructs the EditorScene.
+         * @brief Constructs the CreateScene.
          */
-        EditorScene();
+        CreateScene();
 
         /**
-         * @brief Destroys the EditorScene.
+         * @brief Destroys the CreateScene.
          */
-        ~EditorScene() override = default;
+        ~CreateScene() override = default;
 
         /**
          * @brief Called when the editor scene is loaded.
